@@ -13,7 +13,7 @@ public class RewardSpin : MonoBehaviour
 
     private float tempSpeedAccel;
     
-    [HideInInspector]public int closestPrizeIndex;
+    [HideInInspector]public Prizes winningPrize;
     void Start()
     {
         List<int> prizeList = new List<int>();
@@ -27,6 +27,7 @@ public class RewardSpin : MonoBehaviour
         {
             int selectedPrize = Random.Range(0, prizeList.Count);
             prizes[i].GetComponent<Image>().sprite = prizeSprites[prizeList[selectedPrize]];
+            prizes[i].GetComponent<Prize>().prize = (Prizes)prizeList[selectedPrize];
             prizeList.RemoveAt(selectedPrize);
         }
 
@@ -36,15 +37,18 @@ public class RewardSpin : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            spinTime = Random.Range(3,7f); //5
+            spinTime = Random.Range(1,2f); //5 //3-7
             spinSpeed = 0;
             speedAccel = Random.Range(5,20f);//10 //20
             tempSpeedAccel = -speedAccel;
             accelFactor = (speedAccel * 2) / spinTime;
             //accelAccelerator = 0; //2
         }
-        if (spinTime>0) //|| speedAccel<tempSpeedAccel
+        if (spinTime>0 || speedAccel < tempSpeedAccel) //
         {
+            if (speedAccel < tempSpeedAccel)
+                speedAccel = tempSpeedAccel;
+
             spinSpeed += speedAccel;
             speedAccel -= accelFactor * Time.deltaTime; //5 //8
 
@@ -56,7 +60,7 @@ public class RewardSpin : MonoBehaviour
                 {
                     if (Mathf.Abs(prizes[i].transform.localPosition.y) < closestPrizeLength)
                     {
-                        closestPrizeIndex = i; //for later purposes
+                        winningPrize = prizes[i].GetComponent<Prize>().prize; //for later purposes
                         closestPrizeLength = prizes[i].transform.localPosition.y;
                     }
                 }
@@ -88,4 +92,14 @@ public class RewardSpin : MonoBehaviour
 
         }
     }
+}
+
+public enum Prizes
+{
+    Coin,
+    Star,
+    Diamond,
+    Lock,
+    Currency
+
 }

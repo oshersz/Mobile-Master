@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7264877379964493556}
   - component: {fileID: 469816645641771690}
   - component: {fileID: 8472981809690517032}
+  - component: {fileID: 5606757888880425227}
   m_Layer: 5
-  m_Name: Prize
+  m_Name: Prize3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5606757888880425227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233791587936382118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0bcfc1bf820874a942b3c0822676d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prize: 0
 --- !u!1 &3701932806837385525
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,8 +100,9 @@ GameObject:
   - component: {fileID: 8327471790055864733}
   - component: {fileID: 3426219417451746621}
   - component: {fileID: 4093887382062870324}
+  - component: {fileID: 349657263706973310}
   m_Layer: 5
-  m_Name: Prize
+  m_Name: Prize1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,6 +165,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &349657263706973310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3701932806837385525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0bcfc1bf820874a942b3c0822676d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prize: 0
 --- !u!1 &4150596124747184140
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +191,7 @@ GameObject:
   - component: {fileID: 6689115056568580594}
   - component: {fileID: 1926294308604925318}
   - component: {fileID: 7923785838516442854}
+  - component: {fileID: 1612116059470293594}
   m_Layer: 5
   m_Name: SpinColumn
   m_TagString: Untagged
@@ -265,11 +294,34 @@ MonoBehaviour:
   - {fileID: 4910744014071921613}
   prizeSprites:
   - {fileID: 141954015, guid: 4e962a93f53d8334f8dc340ca3f339bd, type: 3}
-  - {fileID: 6058435029580621580, guid: 4e962a93f53d8334f8dc340ca3f339bd, type: 3}
-  - {fileID: 8681497004946195055, guid: 4e962a93f53d8334f8dc340ca3f339bd, type: 3}
-  - {fileID: -8295147394392374721, guid: 5d8f7aefa0edd884aa44b47bdc6f8ff8, type: 3}
   - {fileID: 8410239095237639090, guid: 02afa46fc457bc341b32f3db2e38ad33, type: 3}
+  - {fileID: 6058435029580621580, guid: 4e962a93f53d8334f8dc340ca3f339bd, type: 3}
+  - {fileID: -8295147394392374721, guid: 5d8f7aefa0edd884aa44b47bdc6f8ff8, type: 3}
+  - {fileID: 8681497004946195055, guid: 4e962a93f53d8334f8dc340ca3f339bd, type: 3}
   speedAccel: 0
+  winningPrize: 0
+--- !u!95 &1612116059470293594
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4150596124747184140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 44563e6560b0f6449aacae5b3334a707, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4910744014071921613
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,8 +333,9 @@ GameObject:
   - component: {fileID: 6364231676777864577}
   - component: {fileID: 6759529497967676324}
   - component: {fileID: 426985581392211510}
+  - component: {fileID: 44880530334452193}
   m_Layer: 5
-  m_Name: Prize
+  m_Name: Prize4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,6 +398,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &44880530334452193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910744014071921613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0bcfc1bf820874a942b3c0822676d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prize: 0
 --- !u!1 &5042098332927239132
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,8 +422,9 @@ GameObject:
   - component: {fileID: 9104491290335031359}
   - component: {fileID: 5329638282686516838}
   - component: {fileID: 9188509223854275827}
+  - component: {fileID: 6938769153544750858}
   m_Layer: 5
-  m_Name: Prize
+  m_Name: Prize0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,6 +487,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6938769153544750858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042098332927239132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0bcfc1bf820874a942b3c0822676d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prize: 0
 --- !u!1 &8830440344759393508
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,8 +511,9 @@ GameObject:
   - component: {fileID: 902326912317693216}
   - component: {fileID: 6727131841610431479}
   - component: {fileID: 135226306629658397}
+  - component: {fileID: 9168603230636832181}
   m_Layer: 5
-  m_Name: Prize
+  m_Name: Prize2 Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,3 +576,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9168603230636832181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8830440344759393508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0bcfc1bf820874a942b3c0822676d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prize: 0
