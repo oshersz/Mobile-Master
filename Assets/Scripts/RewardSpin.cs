@@ -1,21 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class RewardSpin : MonoBehaviour
 {
     [SerializeField] GameObject[] prizes;
     [SerializeField] Sprite[] prizeSprites;
-    private float spinSpeed;
-    public float speedAccel;
-    private float accelFactor;
-    private float spinTime;
-
-    private float tempSpeedAccel;
-    
     [HideInInspector]public Prizes winningPrize;
+
+    private Animator anim;
+
+    private Vector3[] startingPos;
     void Start()
     {
+        anim = GetComponent<Animator>();
+
+        startingPos = new Vector3[5];
+        for (int i = 0;i<startingPos.Length;i++)
+        {
+            startingPos[i] = prizes[i].transform.localPosition;
+        }
+
         List<int> prizeList = new List<int>();
 
         for (int i = 0; i < prizeSprites.Length; i++)
@@ -33,65 +39,50 @@ public class RewardSpin : MonoBehaviour
 
     }
 
-    void Update()
+    public void Spin(Prizes winner)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        StartCoroutine(SpinRoutine(winner));
+    }
+
+    private IEnumerator SpinRoutine(Prizes winner)
+    {
+        float waitTime = Random.Range(0, 0.65f);
+
+        yield return new WaitForSeconds(waitTime);
+
+        for (int i = 0; i < startingPos.Length; i++)
         {
-            spinTime = Random.Range(1,2f); //5 //3-7
-            spinSpeed = 0;
-            speedAccel = Random.Range(5,20f);//10 //20
-            tempSpeedAccel = -speedAccel;
-            accelFactor = (speedAccel * 2) / spinTime;
-            //accelAccelerator = 0; //2
+            prizes[i].transform.localPosition = startingPos[i];
         }
-        if (spinTime>0 || speedAccel < tempSpeedAccel) //
+
+        anim.enabled = true;
+        anim.Play("Spin Animation",0,0);
+
+        //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        //AnimatorClipInfo[] clipInfo = anim.GetCurrentAnimatorClipInfo(0);
+        //float realDuration = clipInfo[0].clip.length / stateInfo.speed;
+
+        yield return new WaitForSeconds(1); //realDuration * 3
+
+        anim.enabled = false;
+
+        for (int i = 0; i < startingPos.Length; i++)
         {
-            if (speedAccel < tempSpeedAccel)
-                speedAccel = tempSpeedAccel;
+            prizes[i].transform.localPosition = startingPos[i];
+        }
 
-            spinSpeed += speedAccel;
-            speedAccel -= accelFactor * Time.deltaTime; //5 //8
-
-            spinTime -= Time.deltaTime;
-            if (spinTime <= 0)
+        for (int i = 0; i < prizes.Length; i++)
+        {
+            if (prizes[i].GetComponent<Prize>().prize == winner)
             {
-                float closestPrizeLength = float.MaxValue;
-                for (int i = 0; i < prizes.Length; i++)
-                {
-                    if (Mathf.Abs(prizes[i].transform.localPosition.y) < closestPrizeLength)
-                    {
-                        winningPrize = prizes[i].GetComponent<Prize>().prize; //for later purposes
-                        closestPrizeLength = prizes[i].transform.localPosition.y;
-                    }
-                }
-                //after finding the closest, apply it for everyone to snap it to the middle
-                for (int i = 0; i < prizes.Length; i++)
-                {
-                    prizes[i].transform.localPosition -= Vector3.up * closestPrizeLength;
-                    if (prizes[i].transform.localPosition.y > 500)
-                    {
-                        int temp = (i - 1) % 5;
-                        if (temp == -1)
-                            temp = 4;
-                        prizes[i].transform.localPosition = new Vector3(0, prizes[temp].transform.localPosition.y - 256, 0);
-                    }
-                }
-                return;
+                Vector3 tempPos = prizes[2].transform.localPosition;
+                prizes[2].transform.localPosition = prizes[i].transform.localPosition;
+                prizes[i].transform.localPosition = tempPos;
+                break;
             }
-
-            for (int i=0;i<prizes.Length;i++)
-            {
-                //prizes[i].transform.position -= Vector3.up * spinSpeed * Time.deltaTime;
-                prizes[i].transform.localPosition = new Vector3 (0, prizes[i].transform.localPosition.y - (spinSpeed * Time.deltaTime),0);
-                if (prizes[i].transform.localPosition.y<-500)
-                {
-                    //prizes[i].transform.localPosition = prizes[(i + 1) % 5].transform.localPosition + Vector3.up * 256;
-                    prizes[i].transform.localPosition = new Vector3(0,prizes[(i + 1) % 5].transform.localPosition.y + 256,0);
-                }
-            }
-
         }
     }
+
 }
 
 public enum Prizes
