@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: ba9d2a0c0a82a9f4ab27a9849aea6433
+AssetOrigin:
+  serializedVersion: 1
+  productId: 364444
+  packageName: Mobile Main Menu UI Pack (Clean & Animated)
+  packageVersion: 1.0
+  assetPath: Assets/MainMenuUI/UZ/UI_Panel_Wood.png
+  uploadId: 885008
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -84,10 +91,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -215,10 +222,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 364444
-  packageName: Mobile Main Menu UI Pack (Clean & Animated)
-  packageVersion: 1.0
-  assetPath: Assets/MainMenuUI/UZ/UI_Panel_Wood.png
-  uploadId: 885008
