@@ -81,6 +81,9 @@ public class RewardSpin : MonoBehaviour
                 break;
             }
         }
+
+        WheelOfFortune.wheel.RewardSpinFinished();
+        //WheelOfFortune.spinsCompleted++;
     }
 
 }
