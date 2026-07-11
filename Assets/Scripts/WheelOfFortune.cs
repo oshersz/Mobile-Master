@@ -35,6 +35,8 @@ public class WheelOfFortune : MonoBehaviour
         {
             PA.spinsCompleted = -10;
 
+            StartCoroutine(PA.CoinAnimationRoutine(-100));
+
             //int doWeWin = Random.Range(0, 3);
             int doWeWin = 0;
 
