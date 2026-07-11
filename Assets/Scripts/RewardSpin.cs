@@ -82,7 +82,8 @@ public class RewardSpin : MonoBehaviour
             }
         }
 
-        WheelOfFortune.wheel.RewardSpinFinished();
+        PrizeAnimations.anim.RewardSpinFinished();
+        //WheelOfFortune.wheel.RewardSpinFinished();
         //WheelOfFortune.spinsCompleted++;
     }
 

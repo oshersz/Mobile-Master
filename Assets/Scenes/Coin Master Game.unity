@@ -6103,6 +6103,7 @@ GameObject:
   - component: {fileID: 1285367084}
   - component: {fileID: 1285367083}
   - component: {fileID: 1285367085}
+  - component: {fileID: 1285367086}
   m_Layer: 5
   m_Name: Fortune_Wheel_Border
   m_TagString: Untagged
@@ -6186,6 +6187,20 @@ MonoBehaviour:
   - {fileID: 1717300968}
   - {fileID: 1644909171}
   - {fileID: 1200538193}
+  currentPrizes: 
+--- !u!114 &1285367086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285367081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b4fab948162a440b63b3d1c334c7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinsCompleted: 0
   prizeSprites:
   - {fileID: 141954015, guid: 4e962a93f53d8334f8dc340ca3f339bd, type: 3}
   - {fileID: 8410239095237639090, guid: 02afa46fc457bc341b32f3db2e38ad33, type: 3}
