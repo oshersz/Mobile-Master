@@ -15,10 +15,12 @@ public class PrizeAnimations : MonoBehaviour
     [SerializeField] Sprite[] prizeSprites;
     [SerializeField] GameObject[] UIIcons;
     [SerializeField] GameObject a2BVFXPrefab;
+    [SerializeField] GameObject trailPrefab;
 
     [SerializeField] GameObject currencyAnimationPrefab;
     [SerializeField] Animator coinsAnim;
     [SerializeField] TextMeshProUGUI coinsAnimationText;
+    [SerializeField] ParticleSystem coinsVFX;
 
     [SerializeField] Animator diamondWinning;
 
@@ -84,21 +86,41 @@ public class PrizeAnimations : MonoBehaviour
         int prizeAmount;
         if (winningPrize == Prizes.Coin)
         {
-            prizeAmount = Random.Range(1, 6);
+            //prizeAmount = Random.Range(1, 6);
+            //prizeAmount = 3;
+            coinsVFX.Play();
         }
         else
         {
             prizeAmount = 1;
+
+            for (int i = 0; i < prizeAmount; i++)
+            {
+                GameObject effectTrail = Instantiate(trailPrefab, animationsStartingPos);
+                GameObject A2BEffect = Instantiate(a2BVFXPrefab, animationsStartingPos);
+                A2BEffect.GetComponent<Image>().sprite = prizeSprites[(int)winningPrize];
+
+                if (winningPrize == Prizes.Star)
+                {
+                    starsAmount++;
+                    if (starsAmount > 3)
+                    {
+                        starsAmount = 3;
+                    }
+                    A2BEffect.GetComponent<A2BVFXScript>().Destination = starsSprites[starsAmount - 1].transform.position;
+                }
+                else
+                {
+                    A2BEffect.GetComponent<A2BVFXScript>().Destination = UIIcons[(int)winningPrize].transform.position; //_UIIcons[iconIndex].position
+                }
+                effectTrail.GetComponent<TrailScript>().gameObjectToFollow = A2BEffect.transform;
+
+                //_audioSource.PlayOneShot(_rewardSFX);
+                yield return new WaitForSeconds(0.125f); //0.125
+            }
+
         }
 
-        for (int i = 0; i < prizeAmount; i++)
-        {
-            GameObject A2BEffect = Instantiate(a2BVFXPrefab, animationsStartingPos);
-            A2BEffect.GetComponent<Image>().sprite = prizeSprites[(int)winningPrize];
-            A2BEffect.GetComponent<A2BVFXScript>().Destination = UIIcons[(int)winningPrize].transform.position; //_UIIcons[iconIndex].position
-            //_audioSource.PlayOneShot(_rewardSFX);
-            yield return new WaitForSeconds(0.125f); //0.125
-        }
 
         yield return new WaitForSeconds(0.875f); //waiting for the A2B animation to complete
 
@@ -129,7 +151,7 @@ public class PrizeAnimations : MonoBehaviour
         }
         else if (winningPrize == Prizes.Star)
         {
-            starsAmount++;
+            //starsAmount++;
             UpdateStars();
         }
         else if (winningPrize == Prizes.Lock)
@@ -142,10 +164,6 @@ public class PrizeAnimations : MonoBehaviour
 
     private void UpdateStars()
     {
-        if (starsAmount>3)
-        {
-            starsAmount = 3;
-        }
         for (int i=0;i<starsAmount;i++)
         {
             starsSprites[i].sprite = prizeSprites[(int)Prizes.Star];

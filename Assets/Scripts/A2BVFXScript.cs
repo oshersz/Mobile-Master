@@ -4,16 +4,13 @@ using DG.Tweening;
 public class A2BVFXScript : MonoBehaviour
 {
     [HideInInspector] public Vector3 Destination;
-    [SerializeField] GameObject UITrailEffect;
     void Start()
     {
-        Destroy(UITrailEffect, 2.5f);
         transform.DOScale(2.25f, 0.5f).SetEase(Ease.OutBack).OnComplete(() => 
         {
             transform.DOScale(0.75f, 0.5f).SetEase(Ease.OutCubic);
             transform.DOMove(Destination, 0.5f).SetEase(Ease.OutCubic).OnComplete(() => 
             {
-                UITrailEffect.transform.SetParent(null);
                 Destroy(gameObject);
             }
             );
